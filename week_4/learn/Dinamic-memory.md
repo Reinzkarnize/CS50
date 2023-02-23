@@ -1,11 +1,8 @@
 ☄️ Dinamic memory allocation ❄️🛎️🏯🚨
  _________________________________
 |              Text               |
-|---------------------------------|
 |        Initialized data         |
-|---------------------------------|
 |        Unitialized data         |
-|---------------------------------|
 |              Heap               |
 |               |                 |
 |               |                 |
@@ -68,11 +65,11 @@ float* heap_array = malloc(x * sizeof(float))
 
 2. int* a;
 
-    🟩
-     m
+     🟩
+      m
 
-    🟨
-     a
+     🟨
+      a
 
 
 3. int* b = malloc(sizeof(int));
