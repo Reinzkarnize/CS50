@@ -35,13 +35,13 @@ malloc() = request some bytes of DAM by search requested byte of memory from the
     | double = 8 bytes             |
     |______________________________|
 
-  *get integer from user*
+*get integer from user:*
 - int x = get_int();
 
-// array of float on the "stack" memory
+*array of float on the "stack" memory:*
 - float stack_array[x];
 
-// array of float on the "heap" memory
+*array of float on the "heap" memory:*
 float* heap_array = malloc(x * sizeof(float))
 
 
