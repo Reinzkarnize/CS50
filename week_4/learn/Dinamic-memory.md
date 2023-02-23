@@ -53,9 +53,10 @@ float* heap_array = malloc(x * sizeof(float))
  brakdown:
 
 1. int m;
-
+```
     🟩
      m
+```
 
 2. int* a;
 
