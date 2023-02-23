@@ -1,0 +1,128 @@
+                        🤙📞  CALL STACK  ☎️☎️
+____________________________________________________________________________________
+ when you call a funtion, the system will set aside space in memory for
+that funtion to do its necessary work ]=> called "stack frame" or "function frame"
+
+ More than one function's stack frame may exist in memory at a given time. if main()
+calls move(), which then calls direction(), all three funtion have open frames but
+in general only one of them will be active, and the other are waiting until current
+active frame done his job.
+_____________________________________________________________________________________
+
+stack call breakdown:
+
+- these frame are arrange in "stack" memory. The frame for the most recent called funtion
+ are always on the top of the stack
+
+- When new funtion called, new frame is PUSHED onto the top of the frame and become active
+  frame.
+
+- When a fuction finish its work, its frame is popped off from the stack, and frame below it
+  becomes the new active frame
+
+--------------------------------------------------------------------------------------------
+
+🙈👁️ Visualization with recursion:
+
+
+```
+int fact(int n);
+{
+    if (n == 1)
+        return 1;
+
+    else
+        return n * fact(n - 1);
+}
+
+int main(void)
+{
+    printf("%i\n", fact(5))
+}
+
+```
+1.
+
+| Stack memory |
+|==============|
+|    fact(1)   |  ]=> active frame, it return 1
+|    fact(2)   |
+|    fact(3)   |
+|    fact(4)   |
+|    fact(5)   |
+|    printf()  |
+|    main()    |
+         ^
+         first funtion called
+
+2.
+
+| Stack memory |
+|==============|
+|              |
+|    fact(2)   |  ]=> active frame, it return 2
+|    fact(3)   |
+|    fact(4)   |
+|    fact(5)   |
+|    printf()  |
+|    main()    |
+
+3.
+
+| Stack memory |
+|==============|
+|              |
+|              |
+|    fact(3)   |  ]=> active frame, it return 6
+|    fact(4)   |
+|    fact(5)   |
+|    printf()  |
+|    main()    |
+
+4.
+
+| Stack memory |
+|==============|
+|              |
+|              |
+|              |
+|    fact(4)   |  ]=> active frame, it return 24
+|    fact(5)   |
+|    printf()  |
+|    main()    |
+
+5.
+
+| Stack memory |
+|==============|
+|              |
+|              |
+|              |
+|              |
+|    fact(5)   |  ]=> active frame, it return 120
+|    printf()  |
+|    main()    |
+
+5.
+
+| Stack memory |
+|==============|
+|              |
+|              |
+|              |
+|              |
+|              |
+|    printf()  |  ]=> active frame, display output of fact(5)
+|    main()    |
+
+6.
+
+| Stack memory |
+|==============|
+|              |
+|              |
+|              |
+|              |
+|              |
+|              |
+|    main()    |  ]=> active frame,
