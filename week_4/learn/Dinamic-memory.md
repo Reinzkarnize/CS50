@@ -5,13 +5,9 @@
 |        Initialized data         |
 |        Unitialized data         |
 |              Heap               |
-|               |                 |
-|               |                 |
 |               ⬇️               |
 |                                 |
 |               ⬆️                |
-|               |                 |
-|               |                 |
 |             Stack               |
 |      Environment Variable       |
 |_________________________________|
