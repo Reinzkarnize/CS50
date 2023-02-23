@@ -25,8 +25,6 @@ malloc() = request some bytes of DAM by search requested byte of memory from the
   or we can use:
 - int* px = malloc(sizeof(int))
 
-    |  byte needed each data type  |
-    | ---------------------------- |
     | Data Type    | Bytes         |
     | ------------ |:-------------:|
     | int          |  4 bytes      |
