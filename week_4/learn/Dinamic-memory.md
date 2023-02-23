@@ -35,7 +35,7 @@ malloc() = request some bytes of DAM by search requested byte of memory from the
     | double = 8 bytes             |
     |______________________________|
 
-// get integer from user
+  *get integer from user
 - int x = get_int();
 
 // array of float on the "stack" memory
