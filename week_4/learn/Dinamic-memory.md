@@ -25,15 +25,15 @@ malloc() = request some bytes of DAM by search requested byte of memory from the
   or we can use:
 - int* px = malloc(sizeof(int))
 
-     ______________________________
     |  byte needed each data type  |
-    |------------------------------|
-    | int    = 4 bytes             |
-    | char   = 1 bytes             |
-    | long   = 8 bytes             |
-    | float  = 4 bytes             |
-    | double = 8 bytes             |
-    |______________________________|
+    | ---------------------------- |
+    | Data Type    | Bytes         |
+    | ------------ |:-------------:|
+    | int          |  4 bytes      |
+    | char         |  1 bytes      |
+    | long         | 8 bytes       |
+    | float        | 4 bytes       |
+    | double       | 8 bytes       |
 
 *get integer from user:*
 - int x = get_int();
