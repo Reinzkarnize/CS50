@@ -6,7 +6,6 @@
 |        Unitialized data         |
 |              Heap               |
 |               ⬇️               |
-|                                 |
 |               ⬆️                |
 |             Stack               |
 |      Environment Variable       |
