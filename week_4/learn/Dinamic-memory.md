@@ -1,7 +1,7 @@
 # ☄️ **Dinamic memory allocation** ❄️🛎️🏯🚨
 
 |              Text               |
-|---------------------------------|
+|:-------------------------------:|
 |        Initialized data         |
 |        Unitialized data         |
 |              Heap               |
