@@ -1,14 +1,13 @@
 ☄️ **Dinamic memory allocation** ❄️🛎️🏯🚨
-
-            - |              Text               |
-|---------------------------------|
-|        Initialized data         |
-|        Unitialized data         |
-|              Heap               |
-|               ⬇️               |
-|               ⬆️                |
-|             Stack               |
-|      Environment Variable       |
+            |              Text               |
+            |---------------------------------|
+            |        Initialized data         |
+            |        Unitialized data         |
+            |              Heap               |
+            |               ⬇️               |
+            |               ⬆️                |
+            |             Stack               |
+            |      Environment Variable       |
 
 
 malloc() = request some bytes of DAM by search requested byte of memory from the heap
