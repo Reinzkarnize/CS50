@@ -1,4 +1,4 @@
-☄️ Dinamic memory allocation ❄️🛎️🏯🚨
+☄️ **Dinamic memory allocation** ❄️🛎️🏯🚨
 
 |              Text               |
 |---------------------------------|
