@@ -4,7 +4,7 @@
 |:-------------------------------:|
 |        Initialized data         |
 |        Unitialized data         |
-|              Heap               |
+|              Heap               \
 |               ⬇️               |
 |               ⬆️                \
 |             Stack               |
