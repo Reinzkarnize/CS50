@@ -1,6 +1,6 @@
 ☄️ **Dinamic memory allocation** ❄️🛎️🏯🚨
 
-|              Text               |
+            - |              Text               |
 |---------------------------------|
 |        Initialized data         |
 |        Unitialized data         |
