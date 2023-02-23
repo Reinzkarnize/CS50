@@ -9,7 +9,6 @@
 |               ⬆️                |
 |             Stack               |
 |      Environment Variable       |
-|_________________________________|
 
 
 malloc() = request some bytes of DAM by search requested byte of memory from the heap
