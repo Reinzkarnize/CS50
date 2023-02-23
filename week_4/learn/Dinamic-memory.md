@@ -1,6 +1,7 @@
-☄️ **Dinamic memory allocation** ❄️🛎️🏯🚨
-|---------------------------------|
+# ☄️ **Dinamic memory allocation** ❄️🛎️🏯🚨
+
 |              Text               |
+|---------------------------------|
 |        Initialized data         |
 |        Unitialized data         |
 |              Heap               |
@@ -14,7 +15,7 @@ malloc() = request some bytes of DAM by search requested byte of memory from the
             and give back address of that memory. IF can't find memory it will return
             NULL
 
-how to use:
+## how to use:
 - import stdlib.h
 
 - int* px = malloc(4)
@@ -48,8 +49,7 @@ float* heap_array = malloc(x * sizeof(float))
 - free(px)
 
 
-=============================================
- brakdown:
+### breakdown:
 
 1. int m;
 ```
