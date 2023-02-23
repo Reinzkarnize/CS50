@@ -1,0 +1,159 @@
+ 📂  FILE POINTER  📃👈
+
+___________________________________________________________________________________________
+
+  ability to read/write data to file is the primary means of storing PERSISTENT DATA,
+data that doesn't disappear when program stop running.
+
+ Almost universally when working with files, we will be using pointers to them, " FILE* "
+___________________________________________________________________________________________
+
+1. fopen() 📂
+    - open file and return file pointer to it
+    - always check return value to make sure you don't get back NULL
+
+```
+FILE* ptr = fopen("file1.txt", "r");
+                    ^            ^
+                filename      operation
+```
+
+* operation:
+- r = read file
+- w = write/overwrite file
+- a = append file
+
+-----------------------------------------------------------------------
+
+2. fclose() 📁
+    - close the file pointed to, by the given file pointer
+
+```
+fclose(ptr)
+        ^
+      file pointer name
+```
+
+-----------------------------------------------------------------------
+
+3. fgetc() 📖
+    - read and return next character from file pointed to
+    - Note: the "operation" from the file pointer must be "r", or you will
+            suffer and error.
+    - char File ==> read
+
+```
+char ch = fgetc(ptr);
+```
+
+if wrapped on a loop funtion, it will print all of the character:
+```
+char ch;
+while ((ch = fgetc(ptr)) != EOF)
+    printf("%c", ch);
+
+```
+
+   _______________________________________________________________________
+  |                                                                       |
+  |  EOF: is special value in stdio.h which define end of file character  |
+  |_______________________________________________________________________|
+
+
+-----------------------------------------------------------------------------
+
+4. fputc() ✍️📃
+    - write/append the specific character to the pointed-to file
+    - Note: The "operation" of file pointer must be "w" or "a", or it will be error
+    - a character ==> File
+
+```
+fputc('A', ptr)
+       ^     ^
+     char   file pointer
+```
+
+* Now we can read characters from file and write characters to them, let`s copy
+  character on a file to another
+
+```
+char ch;
+while ((ch = fgetc(ptr)) != EOF)
+    fputc(ch, ptr2)
+```
+
+----------------------------------------------------------------------------------
+
+5. fread() 📖
+    - read <qty> unit of size <size> from the file pointed-to and store them in a buffer
+    - the operation of file pointer must be "r"
+    - File ==> Variable
+
+     ________________________________________________________
+    |                                                        |
+    |   fread(<buffer>, <size>, <qty>, <file pointer>);      |
+    |                                                        |
+    |   - buffer: the variable to store information          |
+    |   - size: how large unit of info will be(in bytes)     |
+    |   - qty: how many unit of info                         |
+    |   - file pointer: from wich file we want to get info   |
+    |________________________________________________________|
+
+
+* ex:
+```
+int arr[10];
+
+fread(arr, sizeof(int), 10, ptr);
+```
+
+
+* write units using malloc:
+```
+double* arr = malloc(sizeof(double) * 80)
+
+fread(arr, sizeof(double), 80, ptr)
+```
+
+
+* single unit:
+```
+char c;
+
+fread(&c, sizeof(char), 1, ptr);
+```
+
+---------------------------------------------------------------------------------------
+6. fwrite() ✍️📝
+  - write <qty> units of size <size> to the file pointed-to by reading them from
+    a buffer(array) to file
+  - operation of file pointer must be "w" or "a"
+  - Variable ==> File
+
+     ________________________________________________________
+    |                                                        |
+    |   fwrite(<buffer>, <size>, <qty>, <file pointer>);     |
+    |                                                        |
+    |   - buffer: from wich variable we want to get info     |
+    |   - size: how large unit of info will be(in bytes)     |
+    |   - qty: how many unit of info                         |
+    |   - file pointer: the file that we want write          |
+    |________________________________________________________|
+
+
+-------------------------------------------------------------------------------------------------
+
+Other funtion in File Pointer:
+
+     _____________________________________________________________________________
+    |  Function  |  Description                                                   |
+    |------------|----------------------------------------------------------------|
+    |  fgets()   | Read a full string from a file.                                |
+    |  fputs()   | Writes a full string from a file.                              |
+    |  fprintf() | Writes a formatted string to a file.                           |
+    |  fseek()   | Allow to rewind/fast-foward within a file.                     |
+    |  fteel()   | Tell you at what position(bytes) you are within a file.        |
+    |  feof()    | Tell you whether you've read the end of a file.                |
+    |  ferror()  | Indicate whether an error has occured in working with a file.  |
+    |____________|________________________________________________________________|
+
