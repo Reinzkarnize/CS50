@@ -68,32 +68,32 @@ float* heap_array = malloc(x * sizeof(float))
 
 
 3. int* b = malloc(sizeof(int));
-
+```
     🟩     🟩
      m      |
             |
     🟨     🟨
      a      b
-
+```
 4. a = &m;
-
+```
    🟩m     🟩
     |       |
     |       |
    🟨      🟨
     a       b
-
+```
 5. a = b;
-
+```
        m🟩   🟩
             /   \
            /     \
           /       \
          🟨      🟨
           a       b
-
+```
 6. m = 10
-
+```
         10
          ^
        m🟩   🟩
@@ -102,9 +102,9 @@ float* heap_array = malloc(x * sizeof(float))
           /       \
          🟨      🟨
           a       b
-
+```
 7. *b = m + 2;
-
+```
         10    12
          ^    ^
        m🟩   🟩
@@ -113,9 +113,9 @@ float* heap_array = malloc(x * sizeof(float))
           /       \
          🟨      🟨
           a       b
-
+```
 8. free(b);
-
+```
         10
          ^
        m🟩   ⬜
@@ -124,5 +124,5 @@ float* heap_array = malloc(x * sizeof(float))
           /       \
          🟨      🟨
           a       b
-
+```
 
