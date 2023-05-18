@@ -1,0 +1,865 @@
+1. Internet
+===========
+
+- Internet in early days, called ARPANET in 1969 in united states.
+
+- Router: computer/server that have wire/wireless connection that allow data to flow from point a to b to c.
+
+     /\  ---------------  /\
+    /--\                 /--\
+
+ router A             router B
+
+
+- In order to route the data from one route to another, we need to somehow make routing decision and this is
+
+of thing that Internet Service Providers/ISPs of the world just handle for us.
+
+
+______________________________________________________________________________________________________________________________
+
+2. TCP/IP
+==========
+
+- IP or Internet Protocol is protocol that computer speak that allow them to know how to address computer
+
+on the Internet.
+
+- protocol is just set of convention that computers adhere to. So someone wrote code that probably
+
+have a whole lot of conditionals that tell computer what to do if something happens, Like if i receive a package
+
+then send it to next server.
+
+- IP dictate that every computer on the internet has a unique address of this form.
+
+
+          #.#.#.#
+
+- IP address is four digit seperated by convention by decimal point range 0 to 255 each wich is 32 bits in total
+
+and this is IP version 4, there is newer version wich is version 6 that use 128 bits in total.
+
+- suppose that phillips want to send message to Brian, both phillips and Brian have IP addresses: 5.6.7.8 and 1.2.3.4.
+
+Phillips PC would essentially do the equivalent on human envelope by writing the two address
+
+ _____________________________
+| 5.6.7.8 				      |
+|						      |
+|						      |
+|		 1.2.3.4			  |
+|						      |
+|						      |
+|_____________________________|
+
+
+- So Phillips PC would put Brian address in the middle indicate envelope destined to Brian, and put Phillips address
+
+in the top of the envelope indicate the return address and this is useful if Brian computer needs to aknowlegde receipt,
+
+if he needs to reply in some form.
+
+- TCP is another type mechanism to distinguish one type of internet service from another. how to know when Brian PC
+open the envelope it will be interpreted as email or video or image etc
+
+
+ 80   HTTP
+ 443  HTTPS
+
+- These two number are what the world decided when implementing TCP shall uniquely identify those services.
+
+What does this mean? its mean that if Brian computer is hosting a website and Phillips is requesting Brian homepage
+
+or something like that, he would have his PC not only write Brian address, but also port number that she want this envelope
+
+to be routed to.
+ _____________________________
+| 5.6.7.8 				      |
+|						      |
+|						      |
+|	    1.2.3.4:443		      | => 443 is the port number indicating use of the HTTPs service
+|						      |
+|						      |
+|_____________________________|
+
+
+So, now we have IP address for Brian, the port number that this relevant to, and Phillips computer would also chose
+
+port number, maybe random port number, so that Brian can consersely reply.
+
+- Another use of TCP is fragment big video file into multiple pieces, and what Phillips PC could do now if he uploading
+
+the file to Brian web server, he could put one fragment in envelope and have other seperated envelope for each fragments,
+
+and what he could do in the outside of the envelope numbering them.
+ _____________________________
+| 5.6.7.8 				      |
+|						      |
+|						      |
+|	    1.2.3.4:443           |
+|						      |
+| 1/4			              |
+|_____________________________|
+
+
+- Now, this should be enough information because now if Brian gets all of these envelops, he presumably khow how to
+
+reasamble the file in order But more importantly, one of the routers is distracted and sort of drop one of the packets
+
+because no room left, after receiving the packets he can send message back to Phillips saying "Hey, please retransmit
+
+number 2 out of 4" without redownloading entirely of the file.
+
+
+______________________________________________________________________________________________________________________________
+
+3. DNS
+=======
+
+- DNS(Domain Name System) is collection of servers on the internet whose purpose in life is to convert domain name to
+
+IP addresses and maybe vice versa.
+
+- DNS use for converting user friendly string (e.x. harvard.edu, google.com) to the underlying IP addresses
+
+ Domain name	|	IP Address
+----------------------------------
+ Google.com	    | 	8.8.8.8
+			    |
+
+
+______________________________________________________________________________________________________________________________
+
+4. HTTP
+========
+
+- Officially at the beginning of every URL you visit either HTTP or more secure HTTPS, whenever you're using your browser
+
+to access some website.
+
+- HTTP stand for Hypertext Transfer Protocol. HTTP or the web is kind of a service that run on top of the internet
+
+- Internet just get data from point A to point B. But now, HTTP is the application level protocol. It's sort of what
+
+programmers/companies/developers use ultimately to use the underlying plumbing to build interesting and powerful things.
+
+
+   https://www.example.com
+
+- A lot of browser nowdays are kind of simplifying what you see with your human eyes just to sorten the strings, but
+
+if you click the URL then you will see the whole thing.
+
+- When you visit a URL, by default, especially if you type nothing after .com in this case you're technically implicitly
+
+adding a single slash denotes the root of the server. That is the default page/folder in the server.
+
+   https://www.example.com/
+
+
+- And more generally, there can be a path. A path is some sequence of folder and/or file names after url like this:
+
+   https://www.example.com/path
+
+
+   https://www.example.com/file.html
+
+- If there is call literally file.html or something else on the server, that file is going to be what this URL pulls up
+
+on the computer.
+
+- Meanwhile you might have /folder/ wich means show me whatever's inside of this folder.
+
+   https://www.example.com/folder/
+
+
+- Or you might have more verbosely /folder/file.html, wich will show you that file in that folder. And meanwhile this is
+
+so called fully qualified domain name:
+
+   https://www.example.com/folder/file.html
+      ^	      ^           ^           ^
+      1        2 	         3	  4
+
+   - 2 & 3 & 4: fully qualified domain name
+
+   - 3 & 4    : domain name
+
+   - 4        : Top Level Domain or TLD
+
+   - 2        : Host name
+
+   - 1        : the scheme or the protocol, indicating what protocol should use when your computer accessing content at
+
+                that address
+
+- Assuming that Brian is indeed still a web server in the story and Phillips tring to upload a image or maybe download
+
+a image from Brian web server, inside Phillips's envelope would have been a message literally in text and it would contain
+
+in the beginning of that message literally one of these english verb:
+
+ GET  : get me a image of cat or dog
+
+ POST : upload a picture of a cat to the server instead
+
+
+- For instance if Phillips were visiting that web server, inside of his methaporical envelope, there would be textual
+
+message that start with:
+
+ GET / HTTPS/1.1                                    ]=> 1.1 is version of HTTPs
+
+ Host: www.example.com
+
+ ...
+
+______________________________________________________________________________________________________________________________
+
+5. Inspect
+===========
+
+- When you open inspect element in the browser in the network tab you can see all the request in there
+
+General
+
+   Request URL: https://www.harvard.edu/
+
+   Request Method: GET
+
+   Status Code: 200
+
+   Remote Address: 199.232.46.133:443
+
+Request Header
+
+   :authority: www.harvard.edu
+
+   :method: GET
+
+   :path: /
+
+   :scheme: https
+
+   ...
+
+
+______________________________________________________________________________________________________________________________
+
+6. Curl
+========
+
+- Curl or command url is like command line in vscode that's gonna pretend to be a browser, and its going to connect
+
+to the URL, show us the headers but its not gonna show the image of graphic
+
+- If  you type in terminal:
+
+   curl -I https://www.harvard.edu/
+
+you'll get back a whole response from the server containing only those header values
+
+
+______________________________________________________________________________________________________________________________
+
+7. Error Codes
+===============
+
+ 200 : OK
+
+ 301 : Moved Permanently
+
+ 302 : Found
+
+ 304 : Not Modified
+
+ 307 : Temporary redirect
+
+ 401 : Unauthorized
+
+ 403 : Forbidden
+
+ 404 : Not Found
+
+ 418 : I am a Teapot
+
+ 500 : Internal Server Error
+
+ 503 : Service Unavailable
+
+ ...
+
+
+______________________________________________________________________________________________________________________________
+
+8. HTML - Hypertext Markup Languege
+====================================
+
+- This is the languege in wich web pages themselves are written. This langue is useful for creating the aesthetics of a web page,
+
+conveying data
+
+- HTML has two features:
+
+ tags
+
+ attributes
+
+
+______________________________________________________________________________________________________________________________
+
+9. Hello.html
+==============
+
+```
+
+<!DOCTYPE html>                  }=> 1
+
+
+<html lang="en">                 }=> 2
+
+	<head>                              }
+
+		<title>							}
+
+			hello, title				}
+
+		</title>						}=> 4
+
+	</head>								}
+
+	<body>								}
+
+		hello, body						}
+
+	</body>								}
+
+</html>					  }=> 3
+
+
+ _________________________________________________________________________________
+|																                  |
+| - 1 : The very first line is what's so called your document type declaration	  |
+|																                  |
+| - 2 : "html" is what we gonna call a tag, lang="en" is what so called attribute |
+|																                  |
+|        similar to argument in C, it modifies the behavior of a tag			  |
+|																                  |
+| - 3 : this is end of "html" tag										          |
+|																                  |
+| - 4 : everithing in betwen start tag and end tag, we would called HTML element  |
+|																                  |
+| - head is the child element of a html, and html is parent element of head tag	  |
+|_________________________________________________________________________________|
+
+```
+
+- To run html file on a server you can type in your terminal window codespace:
+  _____________________________________
+ |                                     |
+ |  $ http-server                      |
+ |_____________________________________|
+
+
+______________________________________________________________________________________________________________________________
+
+10. paragraph.html
+===================
+
+- There a 2 ways to seperate the paragraph we can use:
+ _______________________________________
+|                                       |
+|  <br><br>                             |
+|_______________________________________|
+
+this act like space, and no ned close tag
+
+
+or you can use tag to seperate paragraph:
+ _______________________________________
+|                                       |
+|  <p>                                  |
+|    some text                          |
+|  </p>                                 |
+|_______________________________________|
+
+
+______________________________________________________________________________________________________________________________
+
+11. Headings
+=============
+
+to add heading you can use:
+ _______________________________________
+|                                       |
+|  <h1>text here</h1>                   |
+|_______________________________________|
+
+
+______________________________________________________________________________________________________________________________
+
+12. List
+=========
+
+- To make a list you can use:
+ _______________________________________
+|                                       |
+|  <ul>                                 |
+|     <li>text here</li>                |
+|     <li>text here</li>                |
+|     <li>text here</li>                |
+|  </ul>                                |
+|_______________________________________|
+
+- Or you can make ordered list by number:
+ _______________________________________
+|                                       |
+|  <ol>                                 |
+|     <li>text here</li>                |
+|     <li>text here</li>                |
+|     <li>text here</li>                |
+|  </ol>                                |
+|_______________________________________|
+
+
+______________________________________________________________________________________________________________________________
+
+13. Table
+==========
+ _______________________________________
+|                                       |
+|  <table>                              |
+|    <tr>                               |
+|       <td>1</td>                      |
+|       <td>2</td>                      |
+|       <td>3</td>                      |
+|    </tr>                              |
+|  </table>                             |
+|_______________________________________|
+
+tr: table row
+td: table data
+
+
+______________________________________________________________________________________________________________________________
+
+14. Image.html
+===============
+
+- To input image in html you can use src attribute then fill the value with location of the image:
+ _______________________________________
+|                                       |
+|  <img src="folder/image.jpg">         |
+|_______________________________________|
+
+you can also use URL to fill src attribute
+
+- Add alt attribute so people can know what it is
+ _________________________________________________________
+|                                                         |
+|  <img alt="samurai dog" src="folder/image.jpg">         |
+|_________________________________________________________|
+
+
+______________________________________________________________________________________________________________________________
+
+15. Video.html
+===============
+
+- To play video in HTML is slightly different than opening image:
+ _________________________________________________________
+|                                                         |
+|  <video autoplay loop muted width="1280">               |
+|     <source src="you-and-i.mp4">                        |
+|  </video>                                               |
+|_________________________________________________________|
+
+- There is attribe that doesn't have to be value in it
+
+   autoplay : autoplay video
+
+   loop     : loop the video
+
+   muted    : mute the audio
+
+   with     : customized the width
+
+
+______________________________________________________________________________________________________________________________
+
+16. Link.html
+==============
+
+- To insert link you can use href attribute:
+ _________________________________________________________
+|                                                         |
+|  <a href="https://www.harvard.edu/">harvard</a>         |
+|_________________________________________________________|
+
+- When you point your mouse to underlined blue letter, you can the URL In the bottom left corner in your browser
+
+
+______________________________________________________________________________________________________________________________
+
+17.meta
+========
+
+- Meta is tag on html to make your website mobile friendly otherwise known as responsive, this tag placed in the
+
+head tag element
+ ________________________________________________________________________
+|                                                                        |
+|  <meta name="viewport" content="initial-scale=1, width=device-width">  |
+|________________________________________________________________________|
+
+you can have meta tag with an attribute call name referred to the name of the feature of the browser
+
+   - viewport is the technical term for big rectangular region or the body of your page
+
+   - initial-scale=1, that means no matter you visit your site it shouldm't start zoom in/out it just start in
+
+   default size
+
+   - with=device-width, its very arcane way of saying if the user have a small screen, show the text proportional
+
+   to that size
+
+
+________________________________________________________________________________________________________________________
+
+18. Search
+===========
+ ________________________________________________________________________
+|                                                                        |
+|  <form action="https://www.google.com/search">                         |
+|     <input name="q" type="search">                                     |
+|     <input type="submit">                                              |
+|  </form>                                                               |
+|________________________________________________________________________|
+
+ _______________________________________________________________________________________
+|                                                                                       |
+|  <form action="https://www.google.com/search" method="get">                           |
+|      <input autocomplete="off" autofocus name="q" placeholder="Query" type="search">  |
+|      <input type="submit" value="Google Search">                                      |
+|   </form>                                                                             |
+|_______________________________________________________________________________________|
+
+attribute:
+
+   method="get" is when you are sure the request use are get
+
+   autocomplete="of" is when you don't want your history to show
+
+   autofocus so that it cursor blinking in that box
+
+   placeholder="Query" is it give shadow text in the box
+
+   value="google search" change name of the submit box to "google search"
+
+
+____________________________________________________________________________________________________________________
+
+19. Style
+==========
+
+1. Original:
+
+```
+<!DOCTYPE html>
+
+<html lang="en-US">
+    <head>
+        <title>home</title>
+    </head >
+    <body style="text-align: center;">
+        <header style="font-size: large;">
+            Fauzi Kurniawan
+        </header>
+        <main style="font-size: medium;">
+            Welcome to my homepage!
+        </main>
+        <footer style="font-size: small;">
+            Copyright &#169; Fauzi Kurniawan 2023
+        </footer>
+    </body>
+</html>
+```
+
+
+2. Move style to head element
+
+```
+<!DOCTYPE html>
+
+<html lang="en-US">
+    <head>
+        <style>
+            body {
+                text-align: center;
+            }
+            header {
+                font-size: large;
+            }
+            main {
+                font-size: medium;
+            }
+            footer {
+                font-size: small;
+            }
+        </style>
+        <title>home</title>
+    </head >
+    <body >
+        <header >
+            Fauzi Kurniawan
+        </header>
+        <main>
+            Welcome to my homepage!
+        </main>
+        <footer >
+            Copyright &#169; Fauzi Kurniawan 2023
+        </footer>
+    </body>
+</html>
+````
+
+3. using invented class:
+
+```
+<!DOCTYPE html>
+
+<html lang="en-US">
+    <head>
+        <style>
+            .centered {
+                text-align: center;
+            }
+            .large {
+                font-size: large;
+            }
+            .medium {
+                font-size: medium;
+            }
+            .small{
+                font-size: small;
+            }
+        </style>
+        <title>home</title>
+    </head >
+    <body class="centered">
+        <header class="large">
+            Fauzi Kurniawan
+        </header>
+        <main class="medium">
+            Welcome to my homepage!
+        </main>
+        <footer class="small">
+            Copyright &#169; Fauzi Kurniawan 2023
+        </footer>
+    </body>
+</html>
+```
+
+4. Using stylesheet ref in seperated file
+
+home.html:
+
+```
+<!DOCTYPE html>
+
+<html lang="en-US">
+    <head>
+        <link href="styles.css" rel="stylesheet">
+        <title>home</title>
+    </head >
+    <body class="centered">
+        <header class="large">
+            Fauzi Kurniawan
+        </header>
+        <main class="medium">
+            Welcome to my homepage!
+        </main>
+        <footer class="small">
+            Copyright &#169; Fauzi Kurniawan 2023
+        </footer>
+    </body>
+</html>
+```
+
+styles.css:
+
+```
+.centered {
+    text-align: center;
+}
+.large {
+    font-size: large;
+}
+.medium {
+    font-size: medium;
+}
+.small{
+    font-size: small;
+}
+```
+
+_____________________________________________________________________________________________________________________________________________
+
+20. Javascript
+===============
+
+- Syntax in javascript is similar to c except set a variable:
+ ____________________________________________________________
+|                                                            |
+|  let counter = 0;                                          |
+|____________________________________________________________|
+
+- javasript is now proper programming language that let use dynamicly manipulate (change data/read data) in html document object model
+
+1. greeting in html with javascript alert:
+
+```
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <script>
+            function greet()
+            {
+                let name = document.querySelector('#name').value
+                alert("Hello, " + name)
+            }
+        </script>
+        <title>
+            greet
+        </title>
+    </head>
+    <body>
+        <form onsubmit="greet()"; return="false">
+            <input autocomplete="off" id="name" autofocus type="text" placeholder="Name">
+            <input type="submit" value="Greet">
+        </form>
+    </body>
+</html>
+```
+
+2. seperate script from from attribute:
+
+```
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>
+            greet
+        </title>
+    </head>
+    <body>
+        <form>
+            <input autocomplete="off" id="name" autofocus type="text" placeholder="Name">
+            <input type="submit" value="Greet">
+        </form>
+        <script>
+            document.querySelector('form').addEventListener('submit', function(event)
+            {
+                let name = document.querySelector('#name').value
+                alert("Hello, " + name);
+                event.preventDefault();
+            });
+        </script>
+    </body>
+</html>
+```
+
+3. because html read from top to bottom left to right we need to move script underneath, but there is other solution too. Its turn out, that
+
+when browser finished to read all the html element, it will trigger event called "DOMContentLoaded" :
+
+```
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelector('form').addEventListener('submit', function(event) {
+                    let name = document.querySelector('#name').value
+                    alert("Hello, " + name);
+                    event.preventDefault();
+                });
+            });
+        </script>
+        <title>
+            greet
+        </title>
+    </head>
+    <body>
+        <form>
+            <input autocomplete="off" id="name" autofocus type="text" placeholder="Name">
+            <input type="submit" value="Greet">
+        </form>
+    </body>
+</html>
+```
+
+4. Seperate script to another file called greet.js for more clean looks:
+
+```
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <script src="greet.js"></script>
+        <title>
+            greet
+        </title>
+    </head>
+    <body>
+        <form>
+            <input autocomplete="off" id="name" autofocus type="text" placeholder="Name">
+            <input type="submit" value="Greet">
+        </form>
+    </body>
+</html>
+```
+
+____________________________________________________________________________________________________________________________
+
+21. Bootstrap
+=============
+
+- add shorting funtion:
+
+```
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <table class="table table-striped" data-toggle="table">
+        ...
+            <th data-sortable="true" scope="col">Timestamp</th>
+        ...
+    </table>
+,,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

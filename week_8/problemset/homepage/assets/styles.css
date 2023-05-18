@@ -1,0 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color: #000;
+    background-image: url('https://picstatio.com/download/2560x1440/c4792a/sunset-tree-lake-nature-art.jpg');
+    background-position: left;
+    background-size: cover;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+}
+
+a:hover {
+    color: red;
+}
+
+a:active {
+    scale: 1.1;
+}
+
+/* HEADERS */
+
+header {
+    position: relative;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+
+}
+
+.navbar {
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 9998;
+}
+
+.navbar .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar .toggle_btn {
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+/* DROPDOWN MENU */
+
+.dropdown_menu {
+    display: none;
+    position: absolute;
+    right: 0rem;
+    top: 60px;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    height: 0px;
+
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.dropdown_menu.open {
+    height: 180px;
+}
+
+.dropdown_menu li {
+    padding: 0.7rem;
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+}
+
+/* MAIN */
+
+section#main {
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #e8f6ef;
+    padding: 0 2rem;
+}
+
+#main h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* IMAGE SLIDESHOW */
+
+main section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+section#images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #e8f6ef;
+    padding: 0 2rem;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+img {
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+    max-height: 600px;
+}
+
+/* PLAY BUTTON */
+
+.play_btn {
+    display: flex;
+}
+
+.play_btn i {
+    font-size: 1.5rem;
+    padding: 0.7rem;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+    align-items: center;
+}
+
+.play_btn i:hover {
+    color: red;
+}
+
+.play_btn i:active {
+    scale: 1.1;
+}
+
+/* CONTACT ME */
+
+section#contact {
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    color: #e8f6ef;
+    padding: 0 2rem;
+}
+
+.contact_me {
+    height: auto;
+    width: 400px;
+    background: rgba(255, 100, 100, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #e8f6ef;
+    padding: 0 2rem;
+}
+
+.contact_me li {
+    padding: 0.7rem;
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+}
+
+.contact_me li {
+
+    cursor: pointer;
+}
+
+.contact_me li:hover {
+    color: red;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+@media(max-width: 992px) {
+    .navbar .links {
+        display: none;
+    }
+
+    .navbar .toggle_btn {
+        display: block;
+    }
+
+    .dropdown_menu {
+        display: block;
+    }
+
+    .play_btn i {
+        font-size: 2rem;
+        padding: 1.5rem;
+    }
+}
+
+@media(max-width: 576px) {
+    .dropdown_menu {
+        left: 0rem;
+        width: unset;
+    }
+
+    #main h1 {
+        background-size: cover;
+    }
+}
